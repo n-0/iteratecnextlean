@@ -116,12 +116,12 @@ notation:61 "🥇" " of " b:54 " is " a:53 => isFirst a b
 -- 🥈 of (Game) is (Player) to make it visually appealing.
 -- HINT: instDecidableNot is the theorem that proves that
 -- if a if p is decidable (¬ p) is decidable
-@[simp]
+@[simp] -- this is an `attribute` (similar to java annotations) for the simp tactic
 def isSecond (p: Player) (g: Game) : Prop := sorry 
 
 -- Let us proof some theorems about rock-paper-scissors
 example (g: Game) (h: g.p1.move = Move.Scissors) (h2: g.p2.move = Move.Paper) : (🥇 of g is g.p1) := by
-  simp
+  simp -- simp(lify) makes goal/states shorter, you will see more of it later 
   unfold determineWinner
   rw [h, h2]
   done

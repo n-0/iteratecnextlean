@@ -5,6 +5,9 @@ open Set
 def main : IO Unit :=
   IO.println s!"Hello, {company} !"
 
+def myCustomAdder (adding: Nat) := fun add => add + adding
+def fiver := myCustomAdder 3
+#eval (fiver) 3
 
 def simpleTheorem {A: Prop} {B: Prop} {C: Prop} (ha: A) (hb: B) (h: A ∧ B → C) : C  := by
   have andb: A ∧ B := ⟨ha, hb⟩ 

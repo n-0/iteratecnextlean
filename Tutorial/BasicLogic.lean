@@ -1,7 +1,6 @@
 -- Let's continue with the creme dela creme
 -- the treasure you came for
 -- Proofs
-
 /-
   According to the Curry-Howard Isomorphism
   every program is a proof and every proof is
@@ -76,7 +75,7 @@ example (h₁ : Rain) (h₂ : Cloudy): Rain ∧ Cloudy := ⟨h₁, h₂⟩
 -- returns the type of `And`
 
 -- EXERCISE: Prove the following
-example (h₁ : Sun) (h₂ : Cloudy): Sun ∧ Cloudy := by
+example (h₁ : Cloudy) (h₂ : Sun): Sun ∧ Cloudy := by
   sorry -- sorry is a trick, that makes the goal an axiom, thus it is already proven 
 
 /-
@@ -102,7 +101,6 @@ example (h₁ : Rain) (h₂ : Cloudy): Rain ∨ Cloudy := by
 -/
 def grayDay (h₁ : Rain) : Rain ∨ Cloudy := by
   apply Or.inl h₁
-
 #check @grayDay
 
 /-
@@ -117,7 +115,12 @@ example : Rain → Rain ∨ Cloudy := by
 
 -- EXERCISE: Prove the following
 example : Sun → Cloudy → Sun ∧ Cloudy := by
-  sorry 
+  sorry
+
+-- Another way of viewing implications is that they're like
+-- functions, given their arguments you get their output type
+def myDoppler : Nat → Nat := fun (x : Nat) => 2*x
+#check @myDoppler
 
 -- Lets introduce a well known fact
 def wellKnownImplication : Prop := Rain → StreetWet
@@ -138,16 +141,23 @@ example : StreetWet ∧ wellKnownImplication → (Rain ∨ ¬ Rain) := by
   -- shortened to `em` in Lean.
   apply Classical.em
 
+-- Another destructuring 
+example (h₁ : Sun ∧ Cloudy ) : Sun := by
+  let ⟨hs, _cloudyDoesntMatter⟩ := h₁
+  apply hs
+
 -- EXERCISE: prove the following
 example : wellKnownImplication ∧ Rain → StreetWet := by
-  sorry
+  unfold wellKnownImplication
+  intro ⟨hImp, hrain⟩ 
+  exact (hImp hrain)
 
 /-
   Well done! You have now learned the nuts and bolts 
   of propositional logic. Chapeau I may say.
   We end this section with the If-and-only-If (short Iff)
   or logical equivalence operator.
-  To prove a proposition containf `A ↔ B`, we need to
+  To prove a proposition containing `A ↔ B`, we need to
   show `A → B` and `B → A` hold.
 -/
 def yourStdWeatherForecast := Sun ∨ Cloudy 
@@ -171,7 +181,7 @@ def onAClearDay (h₁: ¬Rain ∧ ¬Cloudy ↔ Sun) (h₂: ¬StreetWet ∧ ¬Clo
 FURTHER NOTES:
 You might had the initial urge to use an analytic tableaux
 to prove the theorems here, by setting the propositions to True/False
-and check if the right table comes out (e.g. (A = True) ∧ (B = False) : False).
+and check if the right table of combinations comes out (e.g. (A = True) ∧ (B = False) : False).
 Comment out the following verify that lean understands this too
 -/ 
 --#eval True ∧ False 

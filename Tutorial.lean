@@ -30,3 +30,24 @@ theorem reallyPowerfulFact : 1 + 1 = 2 := by
 
 def company := "iteratec"
 def hello := "world"
+
+/-
+  How to proceed with this tutorial?
+  For the first 3, I'd recommend that, you don't actually try to solve
+  the exercises at first, but rather note yourself, how you
+  would solve them (maybe as a comment) and rather continue to take in a little
+  more of lean's syntax and pecularities. 
+  You can start with
+  1. TypeTheoryIntro.lean
+  2. DataTypesIntro.lean
+  3. BasicLogic.lean
+  After those you can actually start solving the exercises
+  you're most interested in.
+  Afterwards take a really joyful ride
+  with leans macro/dsl capabilities in
+  4. Game.lean
+  and then go on with the somewhat more serious (basics of formal verification)
+  5. Sensor.lean 
+  and the final (more advanced formal verification, especially induction)
+  6. WeatherStation.lean
+-/
