@@ -1,5 +1,4 @@
 import Tutorial.DataTypesIntro
---def x: Scientist := { name := "Emmy Noether", scientificDomain := ScientificDomain.Physics }
 
 /-
   Just as an appetizer of what is to come, 

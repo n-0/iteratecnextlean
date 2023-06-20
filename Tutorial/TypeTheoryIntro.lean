@@ -1,4 +1,4 @@
-open Nat -- imports from other files is done via open keyword
+open Nat -- the open keyword imports and at the same time makes internal namespaces of the imports available
 -- in lean assignments are done with `:=`
 -- `=` is reserved for Equality in the usual programming sense (`==` has also a meaning, namely bitwise equality)
 -- `def` is like `var` or `let` in other languages
